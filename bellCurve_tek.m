@@ -1,3 +1,26 @@
+%{
+MIT License
+
+Copyright (c) 2022 akainami
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+%}
 clc; clear; close; tic;
 
 global AA BA BB CB CC DC DD;
@@ -13,7 +36,7 @@ DD = -1.5;
 
 kisi_sayisi = 100;
 visapass = 30; % VF alma notu, 30/100
-finalweight = 0.5; % Final Yüzdesi
+finalweight = 0.5; % Final YÃ¼zdesi
 % Final notu = VisaGrade * (1-FinalWeight) + FinalExam * FinalWeight
 
 fid = fopen('donemnotlari.csv','r');
@@ -120,9 +143,9 @@ for iGrade = grade % AA BA BB CB CC DC DD FF VF
     data(i) = length(find(TABLE.letterGrade == iGrade));
     i = i + 1;
 end
-%data(end) = ceil(data(end-1)/2); % VF FF is shared %atakanýn kodunda VF yi
-%modifiye eden yer burasýydý
-data(end-1) = floor(data(end-1)); % VF FF is shared %atakanýn kodunda data(end-1)/2 idi.
+%data(end) = ceil(data(end-1)/2); % VF FF is shared %atakanÃ½n kodunda VF yi
+%modifiye eden yer burasÃ½ydÃ½
+data(end-1) = floor(data(end-1)); % VF FF is shared %atakanÃ½n kodunda data(end-1)/2 idi.
 percdata = data./sum(data)*100;
 maxdata = max(data);
 % Plot the table
@@ -132,14 +155,14 @@ for i = 1 : length(grade)
     line(4-[grade(i) grade(i)],[0 data(i)/maxdata],...
         'LineWidth',20,...
         'Color',[51/255 103/255 153/255]);
-    text(4-grade(i)-0.2, data(i)/maxdata+0.05, strcat(string(data(i)),{' '},'Kiþi'));
+    text(4-grade(i)-0.2, data(i)/maxdata+0.05, strcat(string(data(i)),{' '},'KiÃ¾i'));
     text(4-grade(i)-0.1, -0.05, strGrade{i});
 end
 hold off;
 xticks([]);
 yticks([]);
 ylim([0 max(TABLE.id)/maxdata/2]);
-title('MUK204E: Strength of Materials II Not Daðýlýmý')
+title('MUK204E: Strength of Materials II Not DaÃ°Ã½lÃ½mÃ½')
 set(gca,'Color',240/255*ones(3,1),...
     'XColor',240/255*ones(3,1),...
     'YColor',240/255*ones(3,1));
@@ -161,16 +184,16 @@ end
 % Texts
 text(0.03,9.5,'Not','FontWeight','bold','FontSize',fsize);
 rectangle('Position',[0.25 0 0.0001 10], 'FaceColor',[216 238 216]/255,'EdgeColor',[1 1 1]);
-text(0.27,9.5,'Kiþi Sayýsý','FontWeight','bold','FontSize',fsize);
+text(0.27,9.5,'KiÃ¾i SayÃ½sÃ½','FontWeight','bold','FontSize',fsize);
 rectangle('Position',[0.8 0 0.0001 10], 'FaceColor',[216 238 216]/255,'EdgeColor',[1 1 1]);
-text(0.83,9.5,'Yüzde','FontWeight','bold','FontSize',fsize);
+text(0.83,9.5,'YÃ¼zde','FontWeight','bold','FontSize',fsize);
 for i = 0 : 8
     text(0.05,i+0.5,strGrade(9-(i)),'FontSize',fsize);
     
     if data(9-i) < 10
-        text(0.37,i+0.5,strcat(string(data(9-i)),{' '},'Kiþi'),'FontSize',fsize);
+        text(0.37,i+0.5,strcat(string(data(9-i)),{' '},'KiÃ¾i'),'FontSize',fsize);
     else
-        text(0.34,i+0.5,strcat(string(data(9-i)),{' '},'Kiþi'),'FontSize',fsize);
+        text(0.34,i+0.5,strcat(string(data(9-i)),{' '},'KiÃ¾i'),'FontSize',fsize);
     end
     textdata = sprintf('%2.2f',percdata(9-i));
     if percdata(9-i) > 10
